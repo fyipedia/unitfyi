@@ -1,6 +1,6 @@
 """unitfyi -- Pure Python unit conversion engine for developers.
 
-220 units across 20 measurement categories with Decimal precision.
+200 units across 20 measurement categories with Decimal precision.
 Zero dependencies.
 
 Basic usage::

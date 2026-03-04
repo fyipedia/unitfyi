@@ -27,7 +27,7 @@ mcp = FastMCP("unitfyi")
 def convert_unit(value: str, from_unit: str, to_unit: str) -> str:
     """Convert a value between two measurement units.
 
-    Supports 220 units across 20 categories (length, weight, temperature,
+    Supports 200 units across 20 categories (length, weight, temperature,
     volume, speed, etc.) with Decimal precision.
 
     Args:

@@ -1,6 +1,6 @@
 # unitfyi
 
-Pure Python unit conversion engine — 220 units, 20 categories, Decimal precision. Zero dependencies core.
+Pure Python unit conversion engine — 200 units, 20 categories, Decimal precision. Zero dependencies core.
 
 ## Install
 
@@ -43,7 +43,7 @@ units = get_category_units("temperature")
 
 ## Features
 
-- **220 units** across 20 measurement categories
+- **200 units** across 20 measurement categories
 - **Decimal precision** — no floating-point drift
 - **Linear + non-linear** — temperature uses function-based formulas
 - **Smart rounding** — magnitude-aware precision

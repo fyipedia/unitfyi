@@ -18,7 +18,7 @@ from rich.table import Table
 
 app = typer.Typer(
     name="unitfyi",
-    help="Unit conversion engine -- 220 units, 20 categories, Decimal precision.",
+    help="Unit conversion engine -- 200 units, 20 categories, Decimal precision.",
     no_args_is_help=True,
 )
 console = Console()

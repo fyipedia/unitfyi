@@ -1,6 +1,6 @@
 """Unit definitions, categories, and formulas for unitfyi.
 
-220 units across 20 measurement categories with Decimal conversion factors.
+200 units across 20 measurement categories with Decimal conversion factors.
 """
 
 from collections.abc import Callable
@@ -27,7 +27,7 @@ class CategoryDef(TypedDict):
 
 
 # ---------------------------------------------------------------------------
-# All unit definitions (220 units, 20 categories)
+# All unit definitions (200 units, 20 categories)
 # ---------------------------------------------------------------------------
 
 UNITS: dict[str, UnitDef] = {
