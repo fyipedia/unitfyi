@@ -8,6 +8,10 @@ Pure Python unit conversion engine for developers. Convert between [200 units](h
 
 > **Convert between 200 units at [unitfyi.com](https://unitfyi.com/)** -- [unit converter](https://unitfyi.com/tools/converter/), conversion tables, and formula references across length, weight, temperature, volume, and 16 more categories.
 
+<p align="center">
+  <img src="demo.gif" alt="unitfyi CLI demo" width="800">
+</p>
+
 ## Install
 
 ```bash
