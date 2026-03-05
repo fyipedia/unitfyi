@@ -44,6 +44,10 @@ Add to your `claude_desktop_config.json`:
 - Converting temperature, length, mass, volume, speed, and more
 - Looking up available units in any measurement category
 
+## Demo
+
+![UnitFYI CLI Demo](https://raw.githubusercontent.com/fyipedia/unitfyi/main/demo.gif)
+
 ## Links
 
 - [Unit Converter](https://unitfyi.com/) -- Convert any measurement unit
