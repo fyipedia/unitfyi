@@ -1,6 +1,6 @@
 [project]
 name = "unitfyi"
-version = "0.1.0"
+version = "0.1.1"
 description = "Pure Python unit conversion engine — 200 units, 20 categories, Decimal precision. Zero dependencies."
 readme = "README.md"
 license = "MIT"
