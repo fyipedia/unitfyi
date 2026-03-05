@@ -82,55 +82,89 @@ The world's measurement systems evolved from diverse historical origins into thr
 
 **Historical and domain-specific units** -- troy ounces for precious metals, nautical miles for maritime navigation, astronomical units for solar system distances, light-years for stellar distances. These persist because they map naturally to the scale of their domain.
 
+| SI Base Unit | Symbol | Measures | Defined By |
+|-------------|--------|----------|-----------|
+| Meter | m | Length | Speed of light (1/299,792,458 s) |
+| Kilogram | kg | Mass | Planck constant (2019 redefinition) |
+| Second | s | Time | Caesium-133 hyperfine transition |
+| Ampere | A | Electric current | Elementary charge |
+| Kelvin | K | Temperature | Boltzmann constant |
+| Mole | mol | Amount of substance | Avogadro constant |
+| Candela | cd | Luminous intensity | Luminous efficacy of 540 THz radiation |
+
+| SI Prefix | Symbol | Factor | Example |
+|-----------|--------|--------|---------|
+| tera | T | 10^12 | 1 TB = 1,000,000,000,000 bytes |
+| giga | G | 10^9 | 1 GHz = 1,000,000,000 Hz |
+| mega | M | 10^6 | 1 MW = 1,000,000 watts |
+| kilo | k | 10^3 | 1 km = 1,000 meters |
+| milli | m | 10^-3 | 1 mm = 0.001 meters |
+| micro | u | 10^-6 | 1 um = 0.000001 meters |
+| nano | n | 10^-9 | 1 nm = 0.000000001 meters |
+
 ```python
 from decimal import Decimal
 from unitfyi import convert
 
-# Metric prefixes follow powers of 10
-convert(Decimal("1"), "kilometer", "meter")       # 1000
-convert(Decimal("1"), "megabyte", "kilobyte")      # 1024 (binary prefix)
+# SI metric prefixes follow powers of 10
+convert(Decimal("1"), "kilometer", "meter")       # 1000 meters in a kilometer
+convert(Decimal("1"), "megabyte", "kilobyte")      # 1024 (binary prefix convention)
 
-# Imperial/US volume differences require care
-convert(Decimal("1"), "us-gallon", "liter")        # 3.7854
+# Imperial vs US volume -- a common source of confusion
+convert(Decimal("1"), "us-gallon", "liter")        # 3.7854 liters (US gallon)
 ```
 
 `unitfyi` uses Python's `Decimal` type throughout the conversion pipeline. This eliminates floating-point drift that plagues `float`-based calculators -- critical for financial calculations (currency amounts), scientific work (precise measurements), and any application where `0.1 + 0.2 != 0.3` would be unacceptable.
+
+Learn more: [Browse All Categories](https://unitfyi.com/category/) · [Browse All Units](https://unitfyi.com/unit/) · [Glossary](https://unitfyi.com/glossary/)
 
 ## Temperature Conversion
 
 Temperature is the only common measurement category where conversions are non-linear. Length, weight, and volume use simple multiplication by a constant factor (1 km = 1000 m). Temperature requires function-based formulas because the scales have different zero points:
 
+| Scale | Zero Point | Boiling Point of Water | Absolute Zero | Used In |
+|-------|-----------|----------------------|--------------|---------|
+| Celsius (C) | Water freezes (0) | 100 | -273.15 | Worldwide (science, daily life) |
+| Fahrenheit (F) | Brine solution (0) | 212 | -459.67 | US, Belize, Cayman Islands |
+| Kelvin (K) | Absolute zero (0) | 373.15 | 0 | Physics, chemistry, astronomy |
+| Rankine (R) | Absolute zero (0) | 671.67 | 0 | US engineering (thermodynamics) |
+
 ```python
 from decimal import Decimal
 from unitfyi import convert
 
-# Celsius to Fahrenheit: F = (C x 9/5) + 32
+# Celsius to Fahrenheit conversion formula: F = (C x 9/5) + 32
 result = convert(Decimal("100"), "celsius", "fahrenheit")
-result.result          # Decimal('212')
+result.result          # Decimal('212') — water boils at 212 F
 result.formula_text    # '°F = (°C x 9/5) + 32'
 
-# All temperature conversions go through Kelvin as the base unit internally
-# Celsius -> Kelvin -> Fahrenheit
+# All temperature conversions route through Kelvin as the base unit
 convert(Decimal("0"), "celsius", "kelvin")         # Decimal('273.15')
 convert(Decimal("-40"), "celsius", "fahrenheit")   # Decimal('-40') -- the crossover point
 
-# Rankine (absolute scale based on Fahrenheit)
+# Rankine -- absolute scale based on Fahrenheit degrees
 convert(Decimal("100"), "celsius", "rankine")      # Decimal('671.67')
 ```
 
 Internally, `unitfyi` routes all temperature conversions through Kelvin as the canonical base unit. For linear categories (length, weight, etc.), each unit stores a single conversion factor relative to the base unit, and conversion is a simple division-then-multiplication. For temperature, each unit provides `to_base` and `from_base` functions that encode the non-linear relationship.
 
+Learn more: [Temperature Units](https://unitfyi.com/category/temperature/) · [Unit Converter](https://unitfyi.com/) · [Conversion Tables](https://unitfyi.com/tools/table/)
+
 ## Conversion Tables
+
+Generate reference conversion tables for documentation, educational materials, or quick lookup charts. Tables are computed with full `Decimal` precision and smart magnitude-aware rounding.
 
 ```python
 from decimal import Decimal
 from unitfyi import conversion_table
 
-# Generate a full conversion table
+# Generate a kilometer-to-mile reference table
 table = conversion_table("kilometer", "mile", count=10)
 # Returns list of (input_value, output_value) pairs
-# Useful for reference charts and documentation
+# Useful for reference charts, documentation, and educational materials
 ```
+
+Learn more: [Conversion Tables Tool](https://unitfyi.com/tools/table/) · [Browse All Units](https://unitfyi.com/unit/)
 
 ## Command-Line Interface
 
