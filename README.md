@@ -1,6 +1,6 @@
 # unitfyi
 
-[![PyPI](https://img.shields.io/pypi/v/unitfyi)](https://pypi.org/project/unitfyi/)
+[![PyPI version](https://agentgif.com/badge/pypi/unitfyi/version.svg)](https://pypi.org/project/unitfyi/)
 [![Python](https://img.shields.io/pypi/pyversions/unitfyi)](https://pypi.org/project/unitfyi/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
