@@ -1,14 +1,15 @@
 """HTTP API client for unitfyi.com REST endpoints.
 
-Requires: pip install unitfyi[api]
+Requires the ``api`` extra: ``pip install unitfyi[api]``
 
 Usage::
 
     from unitfyi.api import UnitFYI
 
-    with UnitFYI() as client:
-        result = client.convert("100", "celsius", "fahrenheit")
-        print(result)
+    with UnitFYI() as api:
+        items = api.list_blog/categories()
+        detail = api.get_blog/category("example-slug")
+        results = api.search("query")
 """
 
 from __future__ import annotations
@@ -19,55 +20,74 @@ import httpx
 
 
 class UnitFYI:
-    """API client for the unitfyi.com REST API."""
+    """API client for the unitfyi.com REST API.
+
+    Provides typed access to all unitfyi.com endpoints including
+    list, detail, and search operations.
+
+    Args:
+        base_url: API base URL. Defaults to ``https://unitfyi.com``.
+        timeout: Request timeout in seconds. Defaults to ``10.0``.
+    """
 
     def __init__(
         self,
-        base_url: str = "https://unitfyi.com/api",
+        base_url: str = "https://unitfyi.com",
         timeout: float = 10.0,
     ) -> None:
         self._client = httpx.Client(base_url=base_url, timeout=timeout)
 
     def _get(self, path: str, **params: Any) -> dict[str, Any]:
-        resp = self._client.get(path, params={k: v for k, v in params.items() if v is not None})
+        resp = self._client.get(
+            path,
+            params={k: v for k, v in params.items() if v is not None},
+        )
         resp.raise_for_status()
         result: dict[str, Any] = resp.json()
         return result
 
-    def convert(self, value: str, from_unit: str, to_unit: str) -> dict[str, Any]:
-        """Convert a value between two units via the API.
+    # -- Endpoints -----------------------------------------------------------
 
-        Args:
-            value: Numeric value as string (e.g., "100").
-            from_unit: Source unit slug (e.g., "celsius").
-            to_unit: Target unit slug (e.g., "fahrenheit").
+    def list_blog/categories(self, **params: Any) -> dict[str, Any]:
+        """List all blog/categories."""
+        return self._get("/api/v1/blog/categories/", **params)
 
-        Returns:
-            Dict with conversion result including value, result, formula, etc.
-        """
-        return self._get("/convert/", value=value, from_unit=from_unit, to_unit=to_unit)
+    def get_blog/category(self, slug: str) -> dict[str, Any]:
+        """Get blog/category by slug."""
+        return self._get(f"/api/v1/blog/categories/" + slug + "/")
 
-    def categories(self) -> dict[str, Any]:
-        """List all unit categories.
+    def list_blog/posts(self, **params: Any) -> dict[str, Any]:
+        """List all blog/posts."""
+        return self._get("/api/v1/blog/posts/", **params)
 
-        Returns:
-            Dict with categories list.
-        """
-        return self._get("/categories/")
+    def get_blog/post(self, slug: str) -> dict[str, Any]:
+        """Get blog/post by slug."""
+        return self._get(f"/api/v1/blog/posts/" + slug + "/")
 
-    def units(self, category: str) -> dict[str, Any]:
-        """List all units in a category.
+    def list_faqs(self, **params: Any) -> dict[str, Any]:
+        """List all faqs."""
+        return self._get("/api/v1/faqs/", **params)
 
-        Args:
-            category: Category slug (e.g., "length", "temperature").
+    def get_faq(self, slug: str) -> dict[str, Any]:
+        """Get faq by slug."""
+        return self._get(f"/api/v1/faqs/" + slug + "/")
 
-        Returns:
-            Dict with units list for the category.
-        """
-        return self._get(f"/units/{category}/")
+    def list_glossary(self, **params: Any) -> dict[str, Any]:
+        """List all glossary."""
+        return self._get("/api/v1/glossary/", **params)
+
+    def get_term(self, slug: str) -> dict[str, Any]:
+        """Get term by slug."""
+        return self._get(f"/api/v1/glossary/" + slug + "/")
+
+    def search(self, query: str, **params: Any) -> dict[str, Any]:
+        """Search across all content."""
+        return self._get(f"/api/v1/search/", q=query, **params)
+
+    # -- Lifecycle -----------------------------------------------------------
 
     def close(self) -> None:
-        """Close the HTTP client."""
+        """Close the underlying HTTP client."""
         self._client.close()
 
     def __enter__(self) -> UnitFYI:
