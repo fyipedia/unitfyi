@@ -116,7 +116,7 @@ convert(Decimal("1"), "us-gallon", "liter")        # 3.7854 liters (US gallon)
 
 `unitfyi` uses Python's `Decimal` type throughout the conversion pipeline. This eliminates floating-point drift that plagues `float`-based calculators -- critical for financial calculations (currency amounts), scientific work (precise measurements), and any application where `0.1 + 0.2 != 0.3` would be unacceptable.
 
-Learn more: [Browse All Categories](https://unitfyi.com/category/) · [Browse All Units](https://unitfyi.com/unit/) · [Glossary](https://unitfyi.com/glossary/)
+Learn more: [Glossary](https://unitfyi.com/glossary/)
 
 ## Temperature Conversion
 
@@ -148,9 +148,7 @@ convert(Decimal("100"), "celsius", "rankine")      # Decimal('671.67')
 
 Internally, `unitfyi` routes all temperature conversions through Kelvin as the canonical base unit. For linear categories (length, weight, etc.), each unit stores a single conversion factor relative to the base unit, and conversion is a simple division-then-multiplication. For temperature, each unit provides `to_base` and `from_base` functions that encode the non-linear relationship.
 
-Learn more: [Temperature Units](https://unitfyi.com/category/temperature/) · [Unit Converter](https://unitfyi.com/) · [Conversion Tables](https://unitfyi.com/tools/table/)
-
-## Conversion Tables
+Learn more: [Temperature Units](temperature/) · [Unit Converter](https://unitfyi.com/) · ## Conversion Tables
 
 Generate reference conversion tables for documentation, educational materials, or quick lookup charts. Tables are computed with full `Decimal` precision and smart magnitude-aware rounding.
 
@@ -164,9 +162,7 @@ table = conversion_table("kilometer", "mile", count=10)
 # Useful for reference charts, documentation, and educational materials
 ```
 
-Learn more: [Conversion Tables Tool](https://unitfyi.com/tools/table/) · [Browse All Units](https://unitfyi.com/unit/)
-
-## Command-Line Interface
+Learn more: ## Command-Line Interface
 
 ```bash
 pip install "unitfyi[cli]"
@@ -262,9 +258,7 @@ Length, Weight, Temperature, Volume, Area, Speed, Time, Data Storage, Pressure, 
 
 ## Learn More About Units
 
-- **Tools**: [Unit Converter](https://unitfyi.com/) · [Conversion Tables](https://unitfyi.com/tools/table/)
-- **Browse**: [Categories](https://unitfyi.com/category/) · [All Units](https://unitfyi.com/unit/)
-- **Guides**: [Glossary](https://unitfyi.com/glossary/) · [Blog](https://unitfyi.com/blog/)
+- **Tools**: [Unit Converter](https://unitfyi.com/) · - **Browse**: - **Guides**: [Glossary](https://unitfyi.com/glossary/) · [Blog](https://unitfyi.com/blog/)
 - **API**: [REST API Docs](https://unitfyi.com/developers/) · [OpenAPI Spec](https://unitfyi.com/api/openapi.json)
 
 ## Utility FYI Family
