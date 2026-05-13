@@ -284,6 +284,20 @@ Embed [UnitFYI](https://unitfyi.com) widgets on any website with [unitfyi-embed]
 
 Zero dependencies · Shadow DOM · 4 themes (light/dark/sepia/auto) · [Widget docs](https://widget.unitfyi.com)
 
+<!-- WIDGET-OSS-MONITOR: cross-links START -->
+
+## Related Resources
+
+- **Widget Hub**: [widget.toolfyi.com](https://widget.toolfyi.com/) — interactive widgets for the Utility FYI ecosystem
+- **Main Site**: [toolfyi.com](https://toolfyi.com/) — full reference
+- **Family Network**: see [/developers/](https://toolfyi.com/developers/) for sister packages
+
+## FYIPedia Ecosystem
+
+This package is part of the [FYIPedia](https://fyipedia.com) developer tools ecosystem. Sister packages in this family: see widget hub link above.
+
+<!-- WIDGET-OSS-MONITOR: cross-links END -->
+
 ## License
 
 MIT
