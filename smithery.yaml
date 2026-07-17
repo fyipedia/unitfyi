@@ -1,0 +1,10 @@
+# Smithery configuration for unitfyi
+# https://smithery.ai/docs/build/project-config
+startCommand:
+  type: stdio
+  configSchema:
+    type: object
+    required: []
+    properties: {}
+  commandFunction: |-
+    config => ({ command: 'uvx', args: ['--from', 'unitfyi[mcp]', 'python', '-m', 'unitfyi.mcp_server'] })
