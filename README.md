@@ -298,6 +298,16 @@ This package is part of the [FYIPedia](https://fyipedia.com) developer tools eco
 
 <!-- WIDGET-OSS-MONITOR: cross-links END -->
 
+
+## Recently Updated (0.1.4)
+
+Latest content from [https://unitfyi.com](https://unitfyi.com):
+- [All unit categories](https://unitfyi.com/category/)
+- [Length converter](https://unitfyi.com/tools/length-converter/)
+- [Temperature converter](https://unitfyi.com/tools/temperature-converter/)
+
+Version bumped 2026-05-27 as part of [SEO recovery refresh](https://github.com/dobestan).
+
 ## License
 
 MIT
